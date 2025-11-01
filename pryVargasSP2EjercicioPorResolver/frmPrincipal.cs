@@ -9,8 +9,20 @@ namespace pryVargasSP2EjercicioPorResolver
         //Declaración variables
         int vCantidadDias = 0;
         int vDistancia = 0;
-        int vTotal = 0;
-        int vDescuento = 0;
+        double vTotal = 0;
+        double vDescuento = 0;
+        int Indice = 0;
+
+        public struct Datos 
+        {
+            public int CantidadDias;
+            public int Distancia;
+            public double Total;
+            public double Descuento;
+        }
+
+        //Declaración de  array
+        public Datos[] vecDatos = new Datos[100]; 
 
         private void mtbDistancia_TextChanged(object sender, EventArgs e)
         {
@@ -57,7 +69,7 @@ namespace pryVargasSP2EjercicioPorResolver
             if (vCantidadDias >= 7 && vDistancia >= 100)
             {
                 vTotal = vDistancia * 5;
-                vDescuento = (int) (vTotal * 0.5);
+                vDescuento = (vTotal * 0.5);
                 vTotal = vTotal - vDescuento;
                 MessageBox.Show("El valor total del boleto es de " + "$" + vTotal, "Precio final");
             }
@@ -67,9 +79,28 @@ namespace pryVargasSP2EjercicioPorResolver
                 MessageBox.Show("El valor total del boleto es de " + "$" + vTotal, "Precio final");
             }
 
+            if (Indice < 100)
+            {
+                //Grabamos datos en el array
+                vecDatos[Indice].Distancia = vDistancia;
+                vecDatos[Indice].CantidadDias = vCantidadDias;
+                vecDatos[Indice].Total = vTotal;
+                vecDatos[Indice].Descuento = vDescuento;
+                Indice++;
+            }
+            else
+            {
+                MessageBox.Show("El array se encuentra lleno", "Array lleno", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                btnCalcular.Enabled = false;
+            }
+
             //limpiamos los controles
             mtbDistancia.Text = "";
             nudCantidadDias.Value = 1;
+            vCantidadDias = 0;
+            vTotal = 0;
+            vDistancia = 0;
+            vDescuento = 0;
 
         }
     }

@@ -116,6 +116,7 @@
             Controls.Add(nudCantidadDias);
             Controls.Add(lblCantidadDias);
             Controls.Add(lblDistancia);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "frmPrincipal";
             StartPosition = FormStartPosition.CenterScreen;
